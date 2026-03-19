@@ -9,7 +9,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 const GUESTS_FILE = path.join(__dirname, 'data', 'guests.json');
 
 // ── Middleware ─────────────────────────────────────────────
