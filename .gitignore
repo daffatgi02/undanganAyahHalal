@@ -1,9 +1,6 @@
 # Dependencies
 node_modules/
 
-# Local data (Database JSON)
-data/guests.json
-
 # Environment variables
 .env
 
