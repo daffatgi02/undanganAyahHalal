@@ -1,0 +1,13 @@
+{
+  "name": "undangan-halal-bihalal",
+  "version": "1.0.0",
+  "description": "Backend undangan Halal Bihalal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

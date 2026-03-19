@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — Undangan Halal Bihalal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* ── Header ── */
+        header {
+            background: #0a3d2e;
+            color: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e8d5a3;
+            letter-spacing: 0.03em;
+        }
+        header p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+        .header-badge {
+            background: rgba(201,168,76,0.15);
+            border: 1px solid rgba(201,168,76,0.4);
+            color: #e8d5a3;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ── Main Layout ── */
+        main {
+            max-width: 800px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ── Add Form ── */
+        .add-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .add-card h2 {
+            font-size: 1rem;
+            color: #0a3d2e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .input-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .input-row input {
+            flex: 1;
+            padding: 0.85rem 1.1rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #f8fafc;
+        }
+        .input-row input:focus {
+            outline: none;
+            border-color: #c9a84c;
+            box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+            background: white;
+        }
+        .btn-add {
+            padding: 0.85rem 1.5rem;
+            background: #0a3d2e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .btn-add:hover { background: #062b20; }
+        .btn-add:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        /* ── Guest Count ── */
+        .list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .list-header h2 {
+            font-size: 1rem;
+            color: #334155;
+        }
+        .count-badge {
+            background: #0a3d2e;
+            color: #e8d5a3;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+        }
+
+        /* ── Guest Table ── */
+        .guest-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .guest-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: box-shadow 0.2s;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .guest-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+        
+        .guest-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0a3d2e, #1a7a5a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8d5a3;
+            font-weight: 800;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .guest-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .guest-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .guest-link {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+        .guest-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+        .btn-copy-link {
+            padding: 0.5rem 1rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #334155;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .btn-copy-link:hover { background: #e8d5a3; border-color: #c9a84c; }
+        .btn-copy-link.copied {
+            background: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+        .btn-delete {
+            padding: 0.5rem 0.75rem;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            color: #e11d48;
+            font-family: inherit;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-delete:hover { background: #e11d48; color: white; }
+
+        /* ── Empty State ── */
+        .empty-state {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 2px dashed #e2e8f0;
+            color: #94a3b8;
+        }
+        .empty-state p { font-size: 0.9rem; }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── Loading ── */
+        .loading { color: #94a3b8; font-size: 0.9rem; text-align: center; padding: 2rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>Panel Admin Undangan</h1>
+        <p>Halal Bihalal · 28 Maret 2026</p>
+    </div>
+    <span class="header-badge">Admin</span>
+</header>
+
+<main>
+    <!-- Add Guest Form -->
+    <div class="add-card">
+        <h2>Buat Undangan Baru</h2>
+        <div class="input-row">
+            <input 
+                type="text" 
+                id="guestNameInput" 
+                placeholder="Nama lengkap tamu, cth: Bapak Budi Santoso"
+                autocomplete="off"
+            >
+            <button class="btn-add" id="btnAdd" onclick="addGuest()">+ Buat Link</button>
+        </div>
+    </div>
+
+    <!-- Guest List -->
+    <div class="list-header">
+        <h2>Daftar Tamu</h2>
+        <span class="count-badge" id="guestCount">0 tamu</span>
+    </div>
+
+    <div id="guestList" class="guest-list">
+        <div class="loading">Memuat data...</div>
+    </div>
+</main>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+    const BASE_URL = window.location.origin;
+
+    // ── Fetch & Render Guests ────────────────────────────────
+    async function loadGuests() {
+        const res = await fetch('/api/guests');
+        const guests = await res.json();
+        renderGuests(guests);
+    }
+
+    function renderGuests(guests) {
+        const container = document.getElementById('guestList');
+        const countEl = document.getElementById('guestCount');
+        
+        countEl.textContent = `${guests.length} tamu`;
+        
+        if (guests.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <p>Belum ada undangan dibuat.<br>Tambahkan nama tamu di atas.</p>
+                </div>`;
+            return;
+        }
+
+        // Sort newest first
+        const sorted = [...guests].sort((a, b) => b.id - a.id);
+        
+        container.innerHTML = sorted.map(guest => {
+            const invLink = `${BASE_URL}/inv/${guest.slug}`;
+            const initial = guest.name.trim()[0].toUpperCase();
+            return `
+                <div class="guest-item" id="item-${guest.slug}">
+                    <div class="guest-avatar">${initial}</div>
+                    <div class="guest-info">
+                        <div class="guest-name">${escHtml(guest.name)}</div>
+                        <div class="guest-link">${invLink}</div>
+                    </div>
+                    <div class="guest-actions">
+                        <button class="btn-copy-link" id="copy-${guest.slug}" onclick="copyLink('${invLink}', '${guest.slug}')">
+                            Salin Link
+                        </button>
+                        <button class="btn-delete" onclick="deleteGuest('${guest.slug}', '${escHtml(guest.name)}')">
+                            Hapus
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ── Add Guest ────────────────────────────────────────────
+    async function addGuest() {
+        const input = document.getElementById('guestNameInput');
+        const btn = document.getElementById('btnAdd');
+        const name = input.value.trim();
+        
+        if (!name) {
+            showToast('Nama tidak boleh kosong');
+            input.focus();
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Membuat...';
+
+        try {
+            const res = await fetch('/api/guests', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                showToast('Gagal: ' + err.error);
+                return;
+            }
+
+            const guest = await res.json();
+            input.value = '';
+            await loadGuests();
+            
+            // Auto-copy the new link
+            const invLink = `${BASE_URL}/inv/${guest.slug}`;
+            copyLink(invLink, guest.slug);
+            showToast(`Undangan untuk "${guest.name}" dibuat! Link disalin.`);
+        } catch (err) {
+            showToast('❌ Gagal membuat undangan. Coba lagi.');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = '+ Buat Link';
+        }
+    }
+
+    // ── Delete Guest ─────────────────────────────────────────
+    async function deleteGuest(slug, name) {
+        if (!confirm(`Hapus undangan untuk "${name}"?`)) return;
+        
+        try {
+            const res = await fetch(`/api/guests/${slug}`, { method: 'DELETE' });
+            if (!res.ok) throw new Error();
+            
+            // Animate removal
+            const item = document.getElementById(`item-${slug}`);
+            if (item) {
+                item.style.transition = 'opacity 0.2s, transform 0.2s';
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => loadGuests(), 220);
+            }
+            showToast(`Undangan "${name}" dihapus`);
+        } catch {
+            showToast('Gagal menghapus. Coba lagi.');
+        }
+    }
+
+    // ── Copy Link ────────────────────────────────────────────
+    async function copyLink(link, slug) {
+        try {
+            await navigator.clipboard.writeText(link);
+        } catch {
+            // Fallback
+            const ta = document.createElement('textarea');
+            ta.value = link;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+        }
+        
+        const btn = document.getElementById(`copy-${slug}`);
+        if (btn) {
+            btn.textContent = '✓ Tersalin!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Salin Link';
+                btn.classList.remove('copied');
+            }, 2500);
+        }
+    }
+
+    // ── Toast ─────────────────────────────────────────────────
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg.replace(/[^\x20-\x7E]/g, ''); // Simple way to strip non-ascii (emojis) if any left
+        toast.textContent = msg; // Just keep the message, but I'll ensure callers don't pass emojis
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // ── Utilities ─────────────────────────────────────────────
+    function escHtml(str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    // ── Init ──────────────────────────────────────────────────
+    loadGuests();
+
+    // Enter key to submit
+    document.getElementById('guestNameInput').addEventListener('keypress', e => {
+        if (e.key === 'Enter') addGuest();
+    });
+</script>
+</body>
+</html>

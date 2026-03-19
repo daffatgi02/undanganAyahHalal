@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Halal Bihalal — Keluarga Besar Mbah Saman Sedati</title>
+    <meta name="description" content="Undangan Halal Bihalal Keluarga Besar Mbah Saman Sedati, 29 Maret 2026, Cluster Japan Garden Mojokerto.">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- SPLASH SCREEN (needed for music autoplay) -->
+    <div class="splash" id="splash" onclick="openInvitation()">
+        <div class="splash__ornament" id="splash-ornament">
+            <img src="/assets/moon.png" alt="Moon Splash"
+                style="width:100%; height:auto; opacity:0.8; filter: drop-shadow(0 0 15px rgba(201,168,76,0.5));">
+        </div>
+        <div class="splash__title">Undangan Halal Bihalal</div>
+
+
+        <div class="splash__guest" id="guest-wrapper">
+            <div
+                style="font-size:0.6rem; color:var(--ivory-d); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.4rem;">
+                Kepada Yth.</div>
+            <div id="guest-name"
+                style="font-family:'Amiri',serif; font-size:1.4rem; color:var(--gold); font-weight:700; margin-bottom:1.5rem;">
+                Tamu Undangan</div>
+        </div>
+
+        <button class="splash__btn">Buka Undangan</button>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="bgm" loop preload="auto">
+        <source src="/assets/Ramadan Kareem (Background Music).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- MUSIC TOGGLE -->
+    <button class="music-toggle playing" id="music-toggle" onclick="toggleMusic()" title="Toggle musik">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect class="bar" x="2" y="7" width="3" height="8" rx="1" fill="var(--gold)" />
+            <rect class="bar" x="7.5" y="4" width="3" height="11" rx="1" fill="var(--gold)" />
+            <rect class="bar" x="13" y="6" width="3" height="9" rx="1" fill="var(--gold)" />
+        </svg>
+    </button>
+
+    <canvas id="particles"></canvas>
+    <div class="pattern-bg"></div>
+    <div class="vignette"></div>
+
+    <!-- ══ SECTION 1 — OPENING ══ -->
+    <section class="sec sec--opening" id="s-opening">
+        <div class="ornament ornament--lantern" style="top:-10px;left:5%;width:90px" id="lantern-l">
+            <svg viewBox="0 0 60 160" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <line x1="30" y1="0" x2="30" y2="30" />
+                <path d="M18,30 Q18,26 22,26 L38,26 Q42,26 42,30" />
+                <path d="M15,35 Q15,30 20,30 L40,30 Q45,30 45,35 L45,95 Q45,110 30,120 Q15,110 15,95 Z" />
+                <path d="M20,45 L40,45 M20,65 L40,65 M20,85 L40,85" stroke-width=".8" opacity=".5" />
+                <ellipse cx="30" cy="70" rx="8" ry="12" stroke-width=".6" opacity=".4" />
+                <circle cx="30" cy="70" r="3" fill="var(--gold)" opacity=".3" />
+                <path d="M30,120 L30,135" />
+                <path d="M25,135 Q30,142 35,135" />
+            </svg>
+        </div>
+        <div class="ornament ornament--lantern" style="top:-10px;right:5%;width:80px" id="lantern-r">
+            <svg viewBox="0 0 60 140" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <line x1="30" y1="0" x2="30" y2="25" />
+                <path d="M20,25 Q20,22 24,22 L36,22 Q40,22 40,25" />
+                <path d="M18,28 Q18,25 22,25 L38,25 Q42,25 42,28 L42,80 Q42,95 30,105 Q18,95 18,80 Z" />
+                <path d="M22,38 L38,38 M22,55 L38,55 M22,72 L38,72" stroke-width=".7" opacity=".5" />
+                <circle cx="30" cy="58" r="4" fill="var(--gold)" opacity=".25" />
+                <path d="M30,105 L30,118" />
+                <circle cx="30" cy="122" r="4" />
+            </svg>
+        </div>
+        <div class="ornament" style="top:0;left:0;width:140px;height:140px;opacity:.15" id="corner-tl">
+            <svg viewBox="0 0 200 200" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <path d="M0,0 L0,100 Q0,60 40,60 L100,60 Q60,60 60,40 L60,0" />
+                <path d="M0,0 L0,140 Q0,80 60,80 L140,80 Q80,80 80,60 L80,0" opacity=".4" />
+                <circle cx="30" cy="30" r="18" opacity=".35" />
+                <polygon
+                    points="30,15 35,25 45,20 38,28 48,30 38,32 45,40 35,35 30,45 25,35 15,40 22,32 12,30 22,28 15,20 25,25"
+                    fill="var(--gold)" opacity=".06" stroke="none" />
+            </svg>
+        </div>
+        <div class="ornament" style="top:0;right:0;width:140px;height:140px;opacity:.15;transform:scaleX(-1)"
+            id="corner-tr">
+            <svg viewBox="0 0 200 200" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <path d="M0,0 L0,100 Q0,60 40,60 L100,60 Q60,60 60,40 L60,0" />
+                <path d="M0,0 L0,140 Q0,80 60,80 L140,80 Q80,80 80,60 L80,0" opacity=".4" />
+                <circle cx="30" cy="30" r="18" opacity=".35" />
+            </svg>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1">
+            <div id="crescent" style="margin-bottom:1.5rem">
+                <img src="/assets/moon.png" alt="Moon Decoration"
+                    style="width:100px; height:auto; opacity:0.8; filter: drop-shadow(0 0 10px rgba(201,168,76,0.3));">
+            </div>
+            <p class="font-arabic" id="bismillah"
+                style="font-size:2.2rem;color:var(--gold-l);margin-bottom:.75rem;line-height:1.6">بِسْمِ ٱللَّٰهِ
+                ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+            <div class="divider">
+                <div class="divider__line"></div>
+                <div class="divider__dot"></div>
+                <div class="divider__line"></div>
+            </div>
+            <p id="greeting"
+                style="font-size:.75rem;color:var(--ivory-m);letter-spacing:.12em;max-width:300px;margin:0 auto;line-height:1.8">
+                Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+        </div>
+        <div class="scroll-hint" id="scroll-hint"
+            onclick="document.getElementById('s-title').scrollIntoView({behavior:'smooth'})">
+            <div class="scroll-hint__pill">
+                <div class="scroll-hint__dot"></div>
+            </div>
+            <span style="font-size:.55rem;letter-spacing:.25em;text-transform:uppercase">Scroll</span>
+        </div>
+    </section>
+
+    <!-- ══ SECTION 2 — MAIN INFO (Redesigned Header & Details) ══ -->
+    <section class="sec sec--info" id="s-info">
+        <div class="info-layout">
+            
+            <!-- Left Side / Top: Visual Title -->
+            <div class="info-hero" id="title-block">
+                <div class="hero-label">
+                    <span class="gold-gradient">Halal Bihalal & Silaturahmi</span>
+                </div>
+                <h1 class="title-3d" id="title-main">
+                    Keluarga Besar<br>
+                    <span class="title-sub">Mbah Saman Sedati</span>
+                </h1>
+                <div class="hero-decorative-line"></div>
+            </div>
+
+            <!-- Right Side / Middle: Interactive Hub -->
+            <div class="info-content-grid">
+                
+                <!-- Countdown Area: Floating Glass Card -->
+                <div class="glass-block countdown-mini" id="countdown-section">
+                    <span class="block-label">Menghitung Hari</span>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown__unit"><span class="countdown__num" id="cd-d">--</span><span class="countdown__label">Hari</span></div>
+                        <div class="countdown__unit"><span class="countdown__num" id="cd-h">--</span><span class="countdown__label">Jam</span></div>
+                        <div class="countdown__unit"><span class="countdown__num" id="cd-m">--</span><span class="countdown__label">Menit</span></div>
+                        <div class="countdown__unit"><span class="countdown__num" id="cd-s">--</span><span class="countdown__label">Detik</span></div>
+                    </div>
+                </div>
+
+                <!-- Detail Area: Elegant Triad -->
+                <div class="details-triad" id="cards-grid">
+                    <div class="triad-item" id="c-date">
+                        <span class="triad-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        </span>
+                        <div class="triad-text">
+                            <span class="triad-label">29 Maret 2026</span>
+                            <span class="triad-value">Ahad, 10 Syawal 1447 H</span>
+                        </div>
+                    </div>
+                    <div class="triad-item" id="c-time">
+                        <span class="triad-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </span>
+                        <div class="triad-text">
+                            <span class="triad-label">Waktu Acara</span>
+                            <span class="triad-value">09:00 WIB s/d Selesai</span>
+                        </div>
+                    </div>
+                    <div class="triad-item" id="c-loc">
+                        <span class="triad-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </span>
+                        <div class="triad-text">
+                            <span class="triad-label">Kediaman Heni/Lely</span>
+                            <span class="triad-value" style="font-size: 0.95rem; line-height: 1.4;">Cluster Japan Garden A2/1, Mojokerto</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══ SECTION 4 — MAP ══ -->
+    <section class="sec sec--compact sec--map" id="s-map">
+        <div style="text-align:center;margin-bottom:1.25rem;position:relative;z-index:1">
+            <span style="font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)">Lokasi
+                Acara</span>
+            <div class="divider">
+                <div class="divider__line"></div>
+                <div class="divider__dot"></div>
+                <div class="divider__line"></div>
+            </div>
+        </div>
+        <div class="map-frame" id="map-wrap">
+            <div class="map-frame__corner map-frame__corner--tl"><svg viewBox="0 0 40 40" fill="none"
+                    stroke="var(--gold)" stroke-width="1.2">
+                    <path d="M0,0 L0,30 Q0,20 10,20 L30,20 Q20,20 20,10 L20,0" />
+                    <circle cx="8" cy="8" r="4" opacity=".5" />
+                </svg></div>
+            <div class="map-frame__corner map-frame__corner--tr"><svg viewBox="0 0 40 40" fill="none"
+                    stroke="var(--gold)" stroke-width="1.2">
+                    <path d="M0,0 L0,30 Q0,20 10,20 L30,20 Q20,20 20,10 L20,0" />
+                    <circle cx="8" cy="8" r="4" opacity=".5" />
+                </svg></div>
+            <div class="map-frame__corner map-frame__corner--bl"><svg viewBox="0 0 40 40" fill="none"
+                    stroke="var(--gold)" stroke-width="1.2">
+                    <path d="M0,0 L0,30 Q0,20 10,20 L30,20 Q20,20 20,10 L20,0" />
+                    <circle cx="8" cy="8" r="4" opacity=".5" />
+                </svg></div>
+            <div class="map-frame__corner map-frame__corner--br"><svg viewBox="0 0 40 40" fill="none"
+                    stroke="var(--gold)" stroke-width="1.2">
+                    <path d="M0,0 L0,30 Q0,20 10,20 L30,20 Q20,20 20,10 L20,0" />
+                    <circle cx="8" cy="8" r="4" opacity=".5" />
+                </svg></div>
+            <div class="map-wrap">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.6681180490623!2d112.41994557512952!3d-7.50184299251061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7813f6da423c73%3A0x992ab73f5d836b0f!2sCluster%20Japan%20Garden!5e0!3m2!1sid!2sid!4v1773925934304!5m2!1sid!2sid"
+                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi"></iframe>
+            </div>
+        </div>
+        <div style="margin-top:1.25rem;position:relative;z-index:1">
+            <a href="https://maps.app.goo.gl/w9a2q98GQZzPMLnb9" target="_blank" rel="noopener" class="btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                </svg>Buka di Google Maps
+            </a>
+        </div>
+    </section>
+
+    <!-- ══ SECTION 6 — CLOSING ══ -->
+    <section class="sec sec--closing" id="s-closing">
+        <div class="ornament" style="bottom:0;left:0;width:130px;height:130px;opacity:.12;transform:scaleY(-1)"><svg
+                viewBox="0 0 200 200" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <path d="M0,0 L0,100 Q0,60 40,60 L100,60 Q60,60 60,40 L60,0" />
+                <path d="M0,0 L0,140 Q0,80 60,80 L140,80 Q80,80 80,60 L80,0" opacity=".4" />
+                <circle cx="30" cy="30" r="18" opacity=".35" />
+            </svg></div>
+        <div class="ornament" style="bottom:0;right:0;width:130px;height:130px;opacity:.12;transform:scale(-1)"><svg
+                viewBox="0 0 200 200" fill="none" stroke="var(--gold)" stroke-width="1.2">
+                <path d="M0,0 L0,100 Q0,60 40,60 L100,60 Q60,60 60,40 L60,0" />
+                <path d="M0,0 L0,140 Q0,80 60,80 L140,80 Q80,80 80,60 L80,0" opacity=".4" />
+                <circle cx="30" cy="30" r="18" opacity=".35" />
+            </svg></div>
+        <div style="text-align:center;position:relative;z-index:1;max-width:400px">
+            <p class="font-amiri" id="closing-quote"
+                style="font-size:1.05rem;font-style:italic;color:var(--ivory-m);line-height:2;margin-bottom:2rem">"Mari
+                hadir dan rayakan momen kebersamaan dalam semangat saling memaafkan dan mempererat tali silaturahmi."
+            </p>
+            <div class="divider">
+                <div class="divider__line"></div>
+                <div class="divider__dot"></div>
+                <div class="divider__line"></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2.5rem"
+                id="action-btns">
+                <button class="btn btn--filled" onclick="addToCalendar()"><svg viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>Simpan ke Kalender</button>
+                <button class="btn" onclick="shareInvitation()"><svg viewBox="0 0 24 24">
+                        <circle cx="18" cy="5" r="3" />
+                        <circle cx="6" cy="12" r="3" />
+                        <circle cx="18" cy="19" r="3" />
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>Bagikan</button>
+            </div>
+            <div class="mosque" id="mosque-svg"><svg viewBox="0 0 700 180">
+                    <rect x="0" y="165" width="700" height="15" rx="1" />
+                    <path d="M280,165 L280,90 Q350,15 420,90 L420,165 Z" />
+                    <rect x="345" y="30" width="10" height="25" />
+                    <path d="M340,30 Q350,10 360,30" />
+                    <circle cx="350" cy="12" r="5" />
+                    <rect x="220" y="65" width="12" height="100" />
+                    <path d="M218,65 Q226,42 234,65" />
+                    <circle cx="226" cy="45" r="4" />
+                    <rect x="468" y="65" width="12" height="100" />
+                    <path d="M466,65 Q474,42 482,65" />
+                    <circle cx="474" cy="45" r="4" />
+                    <path d="M170,165 L170,110 Q200,70 230,110 L230,165 Z" opacity=".6" />
+                    <path d="M470,165 L470,110 Q500,70 530,110 L530,165 Z" opacity=".6" />
+                    <rect x="100" y="125" width="70" height="40" opacity=".25" rx="1" />
+                    <path d="M110,125 Q135,100 160,125" opacity=".3" />
+                    <rect x="530" y="125" width="70" height="40" opacity=".25" rx="1" />
+                    <path d="M540,125 Q565,100 590,125" opacity=".3" />
+                </svg></div>
+            <p
+                style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:1.5rem;opacity:.5">
+                Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/js/animations.js"></script>
+</body>
+
+</html>
