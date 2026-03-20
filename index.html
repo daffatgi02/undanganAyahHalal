@@ -22,6 +22,7 @@
     <meta property="twitter:description" content="Ahad, 29 Maret 2026 | Kediaman Heni/Lely, Mojokerto.">
     <meta property="twitter:image" content="https://halalbilhalal.my.id/assets/og-preview.webp">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -53,13 +54,8 @@
         <source src="/assets/Ramadan Kareem (Background Music).mp3" type="audio/mpeg">
     </audio>
 
-    <!-- MUSIC TOGGLE -->
     <button class="music-toggle playing" id="music-toggle" onclick="toggleMusic()" title="Toggle musik">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <rect class="bar" x="2" y="7" width="3" height="8" rx="1" fill="var(--gold)" />
-            <rect class="bar" x="7.5" y="4" width="3" height="11" rx="1" fill="var(--gold)" />
-            <rect class="bar" x="13" y="6" width="3" height="9" rx="1" fill="var(--gold)" />
-        </svg>
+        <i class="fa-solid fa-music"></i>
     </button>
 
     <canvas id="particles"></canvas>
@@ -173,12 +169,7 @@
                 <div class="details-triad" id="cards-grid">
                     <div class="triad-item" id="c-date">
                         <span class="triad-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
+                            <i class="fa-solid fa-calendar-days"></i>
                         </span>
                         <div class="triad-text">
                             <span class="triad-label">29 Maret 2026</span>
@@ -187,10 +178,7 @@
                     </div>
                     <div class="triad-item" id="c-time">
                         <span class="triad-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
+                            <i class="fa-solid fa-clock"></i>
                         </span>
                         <div class="triad-text">
                             <span class="triad-label">Waktu Acara</span>
@@ -199,14 +187,11 @@
                     </div>
                     <div class="triad-item" id="c-loc">
                         <span class="triad-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
+                            <i class="fa-solid fa-location-dot"></i>
                         </span>
                         <div class="triad-text">
                             <span class="triad-label">Kediaman Heni/Lely</span>
-                            <span class="triad-value" style="font-size: -2.05rem; line-height: 1.4;">Cluster Japan
+                            <span class="triad-value" style="font-size: 1.3rem; line-height: 1.4;">Cluster Japan
                                 Garden
                                 A2/1</span>
                         </div>
@@ -258,10 +243,7 @@
         </div>
         <div style="margin-top:1.25rem;position:relative;z-index:1">
             <a href="https://maps.app.goo.gl/w9a2q98GQZzPMLnb9" target="_blank" rel="noopener" class="btn">
-                <svg viewBox="0 0 24 24">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                </svg>Buka di Google Maps
+                <i class="fa-solid fa-map-location-dot"></i> Buka di Google Maps
             </a>
         </div>
     </section>
@@ -292,19 +274,12 @@
             </div>
             <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2.5rem"
                 id="action-btns">
-                <button class="btn btn--filled" onclick="addToCalendar()"><svg viewBox="0 0 24 24">
-                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>Simpan ke Kalender</button>
-                <button class="btn" onclick="shareInvitation()"><svg viewBox="0 0 24 24">
-                        <circle cx="18" cy="5" r="3" />
-                        <circle cx="6" cy="12" r="3" />
-                        <circle cx="18" cy="19" r="3" />
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                    </svg>Bagikan</button>
+                <button class="btn btn--filled" onclick="addToCalendar()">
+                    <i class="fa-solid fa-calendar-plus"></i> Simpan ke Kalender
+                </button>
+                <button class="btn" onclick="shareInvitation()">
+                    <i class="fa-solid fa-share-nodes"></i> Bagikan
+                </button>
             </div>
             <div class="mosque" id="mosque-svg"><svg viewBox="0 0 700 180">
                     <rect x="0" y="165" width="700" height="15" rx="1" />
